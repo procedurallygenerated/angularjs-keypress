@@ -1,0 +1,25 @@
+<html ng-app="keypress-demo">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="keypress.js"></script>
+  </head>
+  <body>
+    <div ng-controller="KeypressController">
+      <input type="text" size=40 value="Hit enter or backspace here" keypress="13:enterPressed(), 8 || 46 : backSpacePressed()">
+      <li x-ng-repeat="key in keys track by $index">{{key}}</li>
+    </div>
+
+    <script type="text/javascript">
+    angular.module('keypress-demo',['keypress']).controller('KeypressController',function($scope){
+        $scope.keys=new Array();
+		$scope.enterPressed=function() {
+			$scope.keys.push("Enter");
+		};
+		$scope.backSpacePressed=function() {
+			$scope.keys.push("Backspace");
+		};
+	});
+	</script>
+</body>
+</html>
+
